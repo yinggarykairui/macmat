@@ -1,0 +1,15 @@
+date: 2026-10-09T13:06:43-07:00
+chip: Apple M4
+macos: 26.6.2
+compiler: Apple clang 21.0.0 (clang-2100.1.1.101)
+flags: -O3 -DNDEBUG -g
+power_mode: automatic
+hardware_concurrency: 10
+VECLIB_MAXIMUM_THREADS: unset
+timestamp: 2026-10-09T13:06:43
+hardware: 4 performance cores, 6 efficiency cores
+L1d (P-core): 131072 bytes; L2 (P-cluster): 16777216 bytes; L2 (E-cluster): 4194304 bytes
+cache line: 128 bytes; memory: 17179869184 bytes
+power: Now drawing from 'AC Power'
+best_tile: 256
+best_micro_tile: 1024

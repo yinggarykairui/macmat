@@ -1,0 +1,505 @@
+date: 2026-10-09T13:01:13-07:00
+chip: Apple M4
+macos: 26.6.2
+compiler: Apple clang 21.0.0 (clang-2100.1.1.101)
+flags: -O3 -DNDEBUG -g
+power_mode: automatic
+hardware_concurrency: 10
+VECLIB_MAXIMUM_THREADS: unset
+timestamp: 2026-10-09T13:01:13
+hardware: 4 performance cores, 6 efficiency cores
+L1d (P-core): 131072 bytes; L2 (P-cluster): 16777216 bytes; L2 (E-cluster): 4194304 bytes
+cache line: 128 bytes; memory: 17179869184 bytes
+power: Now drawing from 'AC Power'
+### 1. Standard suite, tile 32, 3 repeats with rotated order
+== repeat 0, order: naive reordered blocked parallel accelerate
+naive         32x   32x   32 tile=32   thr=1  batch=589    median=    0.0089 ms  IQR=   0.0004 ms      7.37 GFLOP/s
+reordered     32x   32x   32 tile=32   thr=1  batch=1519   median=    0.0035 ms  IQR=   0.0001 ms     18.64 GFLOP/s
+blocked       32x   32x   32 tile=32   thr=1  batch=1501   median=    0.0036 ms  IQR=   0.0001 ms     18.14 GFLOP/s
+parallel      32x   32x   32 tile=32   thr=10 batch=75     median=    0.0554 ms  IQR=   0.0085 ms      1.18 GFLOP/s
+accelerate    32x   32x   32 tile=32   thr=1  batch=17183  median=    0.0002 ms  IQR=   0.0000 ms    288.04 GFLOP/s
+naive         64x   64x   64 tile=32   thr=1  batch=60     median=    0.0936 ms  IQR=   0.0026 ms      5.60 GFLOP/s
+reordered     64x   64x   64 tile=32   thr=1  batch=241    median=    0.0218 ms  IQR=   0.0006 ms     24.08 GFLOP/s
+blocked       64x   64x   64 tile=32   thr=1  batch=176    median=    0.0286 ms  IQR=   0.0012 ms     18.31 GFLOP/s
+parallel      64x   64x   64 tile=32   thr=10 batch=72     median=    0.0630 ms  IQR=   0.0022 ms      8.32 GFLOP/s
+accelerate    64x   64x   64 tile=32   thr=1  batch=7508   median=    0.0005 ms  IQR=   0.0000 ms   1043.85 GFLOP/s
+naive        128x  128x  128 tile=32   thr=1  batch=5      median=    1.0818 ms  IQR=   0.0664 ms      3.88 GFLOP/s
+reordered    128x  128x  128 tile=32   thr=1  batch=47     median=    0.1110 ms  IQR=   0.0049 ms     37.79 GFLOP/s
+blocked      128x  128x  128 tile=32   thr=1  batch=23     median=    0.2353 ms  IQR=   0.0047 ms     17.83 GFLOP/s
+parallel     128x  128x  128 tile=32   thr=10 batch=51     median=    0.1084 ms  IQR=   0.0077 ms     38.70 GFLOP/s
+accelerate   128x  128x  128 tile=32   thr=1  batch=1519   median=    0.0028 ms  IQR=   0.0001 ms   1496.25 GFLOP/s
+naive        256x  256x  256 tile=32   thr=1  batch=1      median=   10.8090 ms  IQR=   0.2052 ms      3.10 GFLOP/s
+reordered    256x  256x  256 tile=32   thr=1  batch=5      median=    1.0813 ms  IQR=   0.0478 ms     31.03 GFLOP/s
+blocked      256x  256x  256 tile=32   thr=1  batch=3      median=    1.8881 ms  IQR=   0.0729 ms     17.77 GFLOP/s
+parallel     256x  256x  256 tile=32   thr=10 batch=13     median=    0.4162 ms  IQR=   0.0257 ms     80.61 GFLOP/s
+accelerate   256x  256x  256 tile=32   thr=1  batch=261    median=    0.0191 ms  IQR=   0.0007 ms   1752.67 GFLOP/s
+naive        512x  512x  512 tile=32   thr=1  batch=1      median=   98.2719 ms  IQR=   1.4340 ms      2.73 GFLOP/s
+reordered    512x  512x  512 tile=32   thr=1  batch=1      median=    8.4804 ms  IQR=   0.1770 ms     31.65 GFLOP/s
+blocked      512x  512x  512 tile=32   thr=1  batch=1      median=   16.0435 ms  IQR=   0.2171 ms     16.73 GFLOP/s
+parallel     512x  512x  512 tile=32   thr=10 batch=2      median=    3.0498 ms  IQR=   0.1338 ms     88.02 GFLOP/s
+accelerate   512x  512x  512 tile=32   thr=1  batch=32     median=    0.1584 ms  IQR=   0.0019 ms   1694.57 GFLOP/s
+naive       1024x 1024x 1024 tile=32   thr=1  batch=1      median=  867.2746 ms  IQR=   6.3289 ms      2.48 GFLOP/s
+reordered   1024x 1024x 1024 tile=32   thr=1  batch=1      median=   65.9486 ms  IQR=   0.1454 ms     32.56 GFLOP/s
+blocked     1024x 1024x 1024 tile=32   thr=1  batch=1      median=  126.6019 ms  IQR=   1.7911 ms     16.96 GFLOP/s
+parallel    1024x 1024x 1024 tile=32   thr=10 batch=1      median=   25.5587 ms  IQR=   0.5176 ms     84.02 GFLOP/s
+accelerate  1024x 1024x 1024 tile=32   thr=1  batch=5      median=    1.2053 ms  IQR=   0.0409 ms   1781.68 GFLOP/s
+naive       1024x  128x  512 tile=32   thr=1  batch=1      median=   39.3070 ms  IQR=   0.1734 ms      3.41 GFLOP/s
+reordered   1024x  128x  512 tile=32   thr=1  batch=2      median=    4.1311 ms  IQR=   0.0477 ms     32.49 GFLOP/s
+blocked     1024x  128x  512 tile=32   thr=1  batch=1      median=    7.3866 ms  IQR=   0.0721 ms     18.17 GFLOP/s
+parallel    1024x  128x  512 tile=32   thr=10 batch=4      median=    1.5025 ms  IQR=   0.0351 ms     89.33 GFLOP/s
+accelerate  1024x  128x  512 tile=32   thr=1  batch=63     median=    0.0806 ms  IQR=   0.0006 ms   1665.97 GFLOP/s
+naive        128x 1024x   64 tile=32   thr=1  batch=1      median=    6.4857 ms  IQR=   0.0233 ms      2.59 GFLOP/s
+reordered    128x 1024x   64 tile=32   thr=1  batch=9      median=    0.6019 ms  IQR=   0.0032 ms     27.88 GFLOP/s
+blocked      128x 1024x   64 tile=32   thr=1  batch=6      median=    0.9157 ms  IQR=   0.0053 ms     18.32 GFLOP/s
+parallel     128x 1024x   64 tile=32   thr=10 batch=24     median=    0.2481 ms  IQR=   0.0270 ms     67.62 GFLOP/s
+accelerate   128x 1024x   64 tile=32   thr=1  batch=293    median=    0.0182 ms  IQR=   0.0008 ms    922.35 GFLOP/s
+naive        127x  255x   63 tile=32   thr=1  batch=5      median=    1.1312 ms  IQR=   0.0143 ms      3.61 GFLOP/s
+reordered    127x  255x   63 tile=32   thr=1  batch=25     median=    0.2028 ms  IQR=   0.0005 ms     20.12 GFLOP/s
+blocked      127x  255x   63 tile=32   thr=1  batch=20     median=    0.2585 ms  IQR=   0.0009 ms     15.79 GFLOP/s
+parallel     127x  255x   63 tile=32   thr=10 batch=41     median=    0.1218 ms  IQR=   0.0044 ms     33.50 GFLOP/s
+accelerate   127x  255x   63 tile=32   thr=1  batch=1225   median=    0.0035 ms  IQR=   0.0001 ms   1156.50 GFLOP/s
+== repeat 1, order: reordered blocked parallel accelerate naive
+reordered     32x   32x   32 tile=32   thr=1  batch=1413   median=    0.0036 ms  IQR=   0.0000 ms     18.39 GFLOP/s
+blocked       32x   32x   32 tile=32   thr=1  batch=1364   median=    0.0036 ms  IQR=   0.0000 ms     18.27 GFLOP/s
+parallel      32x   32x   32 tile=32   thr=10 batch=71     median=    0.0565 ms  IQR=   0.0082 ms      1.16 GFLOP/s
+accelerate    32x   32x   32 tile=32   thr=1  batch=20000  median=    0.0002 ms  IQR=   0.0000 ms    304.76 GFLOP/s
+naive         32x   32x   32 tile=32   thr=1  batch=505    median=    0.0093 ms  IQR=   0.0001 ms      7.02 GFLOP/s
+reordered     64x   64x   64 tile=32   thr=1  batch=217    median=    0.0218 ms  IQR=   0.0002 ms     24.04 GFLOP/s
+blocked       64x   64x   64 tile=32   thr=1  batch=173    median=    0.0285 ms  IQR=   0.0002 ms     18.38 GFLOP/s
+parallel      64x   64x   64 tile=32   thr=10 batch=77     median=    0.0594 ms  IQR=   0.0049 ms      8.83 GFLOP/s
+accelerate    64x   64x   64 tile=32   thr=1  batch=8000   median=    0.0005 ms  IQR=   0.0000 ms   1013.45 GFLOP/s
+naive         64x   64x   64 tile=32   thr=1  batch=54     median=    0.0933 ms  IQR=   0.0007 ms      5.62 GFLOP/s
+reordered    128x  128x  128 tile=32   thr=1  batch=47     median=    0.1078 ms  IQR=   0.0005 ms     38.90 GFLOP/s
+blocked      128x  128x  128 tile=32   thr=1  batch=22     median=    0.2308 ms  IQR=   0.0053 ms     18.17 GFLOP/s
+parallel     128x  128x  128 tile=32   thr=10 batch=45     median=    0.1117 ms  IQR=   0.0061 ms     37.56 GFLOP/s
+accelerate   128x  128x  128 tile=32   thr=1  batch=1539   median=    0.0027 ms  IQR=   0.0000 ms   1551.01 GFLOP/s
+naive        128x  128x  128 tile=32   thr=1  batch=5      median=    1.0795 ms  IQR=   0.0078 ms      3.89 GFLOP/s
+reordered    256x  256x  256 tile=32   thr=1  batch=5      median=    1.0543 ms  IQR=   0.0099 ms     31.83 GFLOP/s
+blocked      256x  256x  256 tile=32   thr=1  batch=3      median=    1.8244 ms  IQR=   0.0098 ms     18.39 GFLOP/s
+parallel     256x  256x  256 tile=32   thr=10 batch=14     median=    0.4014 ms  IQR=   0.0540 ms     83.59 GFLOP/s
+accelerate   256x  256x  256 tile=32   thr=1  batch=261    median=    0.0189 ms  IQR=   0.0001 ms   1780.05 GFLOP/s
+naive        256x  256x  256 tile=32   thr=1  batch=1      median=   10.4017 ms  IQR=   0.0627 ms      3.23 GFLOP/s
+reordered    512x  512x  512 tile=32   thr=1  batch=1      median=    8.2307 ms  IQR=   0.0284 ms     32.61 GFLOP/s
+blocked      512x  512x  512 tile=32   thr=1  batch=1      median=   15.5585 ms  IQR=   0.0502 ms     17.25 GFLOP/s
+parallel     512x  512x  512 tile=32   thr=10 batch=2      median=    3.0005 ms  IQR=   0.0611 ms     89.46 GFLOP/s
+accelerate   512x  512x  512 tile=32   thr=1  batch=33     median=    0.1528 ms  IQR=   0.0006 ms   1756.55 GFLOP/s
+naive        512x  512x  512 tile=32   thr=1  batch=1      median=   96.7182 ms  IQR=   0.2768 ms      2.78 GFLOP/s
+reordered   1024x 1024x 1024 tile=32   thr=1  batch=1      median=   66.0261 ms  IQR=   0.1847 ms     32.52 GFLOP/s
+blocked     1024x 1024x 1024 tile=32   thr=1  batch=1      median=  126.6290 ms  IQR=   0.3622 ms     16.96 GFLOP/s
+parallel    1024x 1024x 1024 tile=32   thr=10 batch=1      median=   25.7509 ms  IQR=   0.5403 ms     83.39 GFLOP/s
+accelerate  1024x 1024x 1024 tile=32   thr=1  batch=5      median=    1.1913 ms  IQR=   0.0350 ms   1802.60 GFLOP/s
+naive       1024x 1024x 1024 tile=32   thr=1  batch=1      median=  872.3498 ms  IQR=  10.0291 ms      2.46 GFLOP/s
+reordered   1024x  128x  512 tile=32   thr=1  batch=2      median=    4.1207 ms  IQR=   0.0224 ms     32.57 GFLOP/s
+blocked     1024x  128x  512 tile=32   thr=1  batch=1      median=    7.3563 ms  IQR=   0.0205 ms     18.25 GFLOP/s
+parallel    1024x  128x  512 tile=32   thr=10 batch=4      median=    1.6079 ms  IQR=   0.0330 ms     83.47 GFLOP/s
+accelerate  1024x  128x  512 tile=32   thr=1  batch=64     median=    0.0801 ms  IQR=   0.0003 ms   1675.08 GFLOP/s
+naive       1024x  128x  512 tile=32   thr=1  batch=1      median=   39.3991 ms  IQR=   0.2554 ms      3.41 GFLOP/s
+reordered    128x 1024x   64 tile=32   thr=1  batch=9      median=    0.6027 ms  IQR=   0.0068 ms     27.84 GFLOP/s
+blocked      128x 1024x   64 tile=32   thr=1  batch=6      median=    0.9174 ms  IQR=   0.0055 ms     18.29 GFLOP/s
+parallel     128x 1024x   64 tile=32   thr=10 batch=24     median=    0.2488 ms  IQR=   0.0060 ms     67.43 GFLOP/s
+accelerate   128x 1024x   64 tile=32   thr=1  batch=305    median=    0.0176 ms  IQR=   0.0006 ms    954.50 GFLOP/s
+naive        128x 1024x   64 tile=32   thr=1  batch=1      median=    6.4906 ms  IQR=   0.0240 ms      2.58 GFLOP/s
+reordered    127x  255x   63 tile=32   thr=1  batch=25     median=    0.2027 ms  IQR=   0.0005 ms     20.13 GFLOP/s
+blocked      127x  255x   63 tile=32   thr=1  batch=20     median=    0.2577 ms  IQR=   0.0028 ms     15.83 GFLOP/s
+parallel     127x  255x   63 tile=32   thr=10 batch=47     median=    0.1215 ms  IQR=   0.0076 ms     33.59 GFLOP/s
+accelerate   127x  255x   63 tile=32   thr=1  batch=1250   median=    0.0034 ms  IQR=   0.0000 ms   1192.34 GFLOP/s
+naive        127x  255x   63 tile=32   thr=1  batch=5      median=    1.1290 ms  IQR=   0.0169 ms      3.61 GFLOP/s
+== repeat 2, order: blocked parallel accelerate naive reordered
+blocked       32x   32x   32 tile=32   thr=1  batch=1396   median=    0.0036 ms  IQR=   0.0000 ms     18.25 GFLOP/s
+parallel      32x   32x   32 tile=32   thr=10 batch=63     median=    0.0534 ms  IQR=   0.0162 ms      1.23 GFLOP/s
+accelerate    32x   32x   32 tile=32   thr=1  batch=20000  median=    0.0002 ms  IQR=   0.0000 ms    314.32 GFLOP/s
+naive         32x   32x   32 tile=32   thr=1  batch=551    median=    0.0093 ms  IQR=   0.0001 ms      7.04 GFLOP/s
+reordered     32x   32x   32 tile=32   thr=1  batch=1380   median=    0.0036 ms  IQR=   0.0000 ms     18.46 GFLOP/s
+blocked       64x   64x   64 tile=32   thr=1  batch=176    median=    0.0285 ms  IQR=   0.0001 ms     18.39 GFLOP/s
+parallel      64x   64x   64 tile=32   thr=10 batch=76     median=    0.0540 ms  IQR=   0.0084 ms      9.70 GFLOP/s
+accelerate    64x   64x   64 tile=32   thr=1  batch=7497   median=    0.0005 ms  IQR=   0.0000 ms   1069.49 GFLOP/s
+naive         64x   64x   64 tile=32   thr=1  batch=54     median=    0.0935 ms  IQR=   0.0011 ms      5.61 GFLOP/s
+reordered     64x   64x   64 tile=32   thr=1  batch=239    median=    0.0217 ms  IQR=   0.0001 ms     24.19 GFLOP/s
+blocked      128x  128x  128 tile=32   thr=1  batch=22     median=    0.2282 ms  IQR=   0.0010 ms     18.38 GFLOP/s
+parallel     128x  128x  128 tile=32   thr=10 batch=46     median=    0.1093 ms  IQR=   0.0063 ms     38.37 GFLOP/s
+accelerate   128x  128x  128 tile=32   thr=1  batch=1519   median=    0.0027 ms  IQR=   0.0000 ms   1567.09 GFLOP/s
+naive        128x  128x  128 tile=32   thr=1  batch=5      median=    1.0837 ms  IQR=   0.0105 ms      3.87 GFLOP/s
+reordered    128x  128x  128 tile=32   thr=1  batch=47     median=    0.1078 ms  IQR=   0.0006 ms     38.91 GFLOP/s
+blocked      256x  256x  256 tile=32   thr=1  batch=3      median=    1.8220 ms  IQR=   0.0162 ms     18.42 GFLOP/s
+parallel     256x  256x  256 tile=32   thr=10 batch=15     median=    0.4094 ms  IQR=   0.0140 ms     81.97 GFLOP/s
+accelerate   256x  256x  256 tile=32   thr=1  batch=260    median=    0.0189 ms  IQR=   0.0002 ms   1774.92 GFLOP/s
+naive        256x  256x  256 tile=32   thr=1  batch=1      median=   10.3840 ms  IQR=   0.0361 ms      3.23 GFLOP/s
+reordered    256x  256x  256 tile=32   thr=1  batch=5      median=    1.0508 ms  IQR=   0.0034 ms     31.93 GFLOP/s
+blocked      512x  512x  512 tile=32   thr=1  batch=1      median=   15.5696 ms  IQR=   0.0780 ms     17.24 GFLOP/s
+parallel     512x  512x  512 tile=32   thr=10 batch=2      median=    2.9866 ms  IQR=   0.0671 ms     89.88 GFLOP/s
+accelerate   512x  512x  512 tile=32   thr=1  batch=33     median=    0.1530 ms  IQR=   0.0007 ms   1754.10 GFLOP/s
+naive        512x  512x  512 tile=32   thr=1  batch=1      median=   96.6363 ms  IQR=   0.2417 ms      2.78 GFLOP/s
+reordered    512x  512x  512 tile=32   thr=1  batch=1      median=    8.2261 ms  IQR=   0.1177 ms     32.63 GFLOP/s
+blocked     1024x 1024x 1024 tile=32   thr=1  batch=1      median=  126.6527 ms  IQR=   0.5075 ms     16.96 GFLOP/s
+parallel    1024x 1024x 1024 tile=32   thr=10 batch=1      median=   25.5273 ms  IQR=   0.7663 ms     84.13 GFLOP/s
+accelerate  1024x 1024x 1024 tile=32   thr=1  batch=5      median=    1.1889 ms  IQR=   0.0361 ms   1806.25 GFLOP/s
+naive       1024x 1024x 1024 tile=32   thr=1  batch=1      median=  880.4473 ms  IQR=  11.1949 ms      2.44 GFLOP/s
+reordered   1024x 1024x 1024 tile=32   thr=1  batch=1      median=   66.0160 ms  IQR=   0.1884 ms     32.53 GFLOP/s
+blocked     1024x  128x  512 tile=32   thr=1  batch=1      median=    7.3308 ms  IQR=   0.0203 ms     18.31 GFLOP/s
+parallel    1024x  128x  512 tile=32   thr=10 batch=4      median=    1.6787 ms  IQR=   0.1023 ms     79.96 GFLOP/s
+accelerate  1024x  128x  512 tile=32   thr=1  batch=63     median=    0.0802 ms  IQR=   0.0006 ms   1674.25 GFLOP/s
+naive       1024x  128x  512 tile=32   thr=1  batch=1      median=   39.2584 ms  IQR=   0.2737 ms      3.42 GFLOP/s
+reordered   1024x  128x  512 tile=32   thr=1  batch=2      median=    4.1279 ms  IQR=   0.0250 ms     32.52 GFLOP/s
+blocked      128x 1024x   64 tile=32   thr=1  batch=6      median=    0.9142 ms  IQR=   0.0066 ms     18.35 GFLOP/s
+parallel     128x 1024x   64 tile=32   thr=10 batch=23     median=    0.2509 ms  IQR=   0.0394 ms     66.87 GFLOP/s
+accelerate   128x 1024x   64 tile=32   thr=1  batch=293    median=    0.0182 ms  IQR=   0.0014 ms    920.58 GFLOP/s
+naive        128x 1024x   64 tile=32   thr=1  batch=1      median=    6.5016 ms  IQR=   0.0376 ms      2.58 GFLOP/s
+reordered    128x 1024x   64 tile=32   thr=1  batch=9      median=    0.6021 ms  IQR=   0.0037 ms     27.87 GFLOP/s
+blocked      127x  255x   63 tile=32   thr=1  batch=20     median=    0.2587 ms  IQR=   0.0019 ms     15.77 GFLOP/s
+parallel     127x  255x   63 tile=32   thr=10 batch=42     median=    0.1222 ms  IQR=   0.0083 ms     33.39 GFLOP/s
+accelerate   127x  255x   63 tile=32   thr=1  batch=1213   median=    0.0034 ms  IQR=   0.0000 ms   1190.96 GFLOP/s
+naive        127x  255x   63 tile=32   thr=1  batch=5      median=    1.1243 ms  IQR=   0.0070 ms      3.63 GFLOP/s
+reordered    127x  255x   63 tile=32   thr=1  batch=25     median=    0.2026 ms  IQR=   0.0018 ms     20.14 GFLOP/s
+### 2. Tile sweep (blocked)
+scripts/run_experiments.sh:31: 2: parameter not set
+date: 2026-10-09T13:02:45-07:00
+chip: Apple M4
+macos: 26.6.2
+compiler: Apple clang 21.0.0 (clang-2100.1.1.101)
+flags: -O3 -DNDEBUG -g
+power_mode: automatic
+hardware_concurrency: 10
+VECLIB_MAXIMUM_THREADS: unset
+timestamp: 2026-10-09T13:02:45
+hardware: 4 performance cores, 6 efficiency cores
+L1d (P-core): 131072 bytes; L2 (P-cluster): 16777216 bytes; L2 (E-cluster): 4194304 bytes
+cache line: 128 bytes; memory: 17179869184 bytes
+power: Now drawing from 'AC Power'
+### 1. Standard suite, tile 32, 3 repeats with rotated order
+### 2. Tile sweep (blocked)
+blocked       32x   32x   32 tile=16   thr=1  batch=1250   median=    0.0039 ms  IQR=   0.0000 ms     16.83 GFLOP/s
+blocked       32x   32x   32 tile=32   thr=1  batch=1539   median=    0.0036 ms  IQR=   0.0001 ms     18.37 GFLOP/s
+blocked       32x   32x   32 tile=64   thr=1  batch=1520   median=    0.0036 ms  IQR=   0.0000 ms     18.35 GFLOP/s
+blocked       32x   32x   32 tile=128  thr=1  batch=1364   median=    0.0036 ms  IQR=   0.0000 ms     18.35 GFLOP/s
+blocked       32x   32x   32 tile=256  thr=1  batch=1082   median=    0.0036 ms  IQR=   0.0000 ms     18.34 GFLOP/s
+blocked       64x   64x   64 tile=16   thr=1  batch=176    median=    0.0312 ms  IQR=   0.0002 ms     16.80 GFLOP/s
+blocked       64x   64x   64 tile=32   thr=1  batch=193    median=    0.0284 ms  IQR=   0.0001 ms     18.44 GFLOP/s
+blocked       64x   64x   64 tile=64   thr=1  batch=285    median=    0.0177 ms  IQR=   0.0003 ms     29.65 GFLOP/s
+blocked       64x   64x   64 tile=128  thr=1  batch=302    median=    0.0175 ms  IQR=   0.0002 ms     29.98 GFLOP/s
+blocked       64x   64x   64 tile=256  thr=1  batch=316    median=    0.0176 ms  IQR=   0.0003 ms     29.84 GFLOP/s
+blocked      128x  128x  128 tile=16   thr=1  batch=21     median=    0.2506 ms  IQR=   0.0020 ms     16.73 GFLOP/s
+blocked      128x  128x  128 tile=32   thr=1  batch=22     median=    0.2318 ms  IQR=   0.0019 ms     18.09 GFLOP/s
+blocked      128x  128x  128 tile=64   thr=1  batch=33     median=    0.1399 ms  IQR=   0.0008 ms     29.99 GFLOP/s
+blocked      128x  128x  128 tile=128  thr=1  batch=46     median=    0.1078 ms  IQR=   0.0004 ms     38.92 GFLOP/s
+blocked      128x  128x  128 tile=256  thr=1  batch=47     median=    0.1078 ms  IQR=   0.0004 ms     38.92 GFLOP/s
+blocked      256x  256x  256 tile=16   thr=1  batch=3      median=    1.9984 ms  IQR=   0.0055 ms     16.79 GFLOP/s
+blocked      256x  256x  256 tile=32   thr=1  batch=3      median=    1.8195 ms  IQR=   0.0053 ms     18.44 GFLOP/s
+blocked      256x  256x  256 tile=64   thr=1  batch=5      median=    1.1308 ms  IQR=   0.0030 ms     29.67 GFLOP/s
+blocked      256x  256x  256 tile=128  thr=1  batch=6      median=    0.9499 ms  IQR=   0.0083 ms     35.33 GFLOP/s
+blocked      256x  256x  256 tile=256  thr=1  batch=5      median=    1.0563 ms  IQR=   0.0112 ms     31.77 GFLOP/s
+blocked      512x  512x  512 tile=16   thr=1  batch=1      median=   17.3029 ms  IQR=   0.1081 ms     15.51 GFLOP/s
+blocked      512x  512x  512 tile=32   thr=1  batch=1      median=   15.5681 ms  IQR=   0.0543 ms     17.24 GFLOP/s
+blocked      512x  512x  512 tile=64   thr=1  batch=1      median=   12.9578 ms  IQR=   0.0478 ms     20.72 GFLOP/s
+blocked      512x  512x  512 tile=128  thr=1  batch=1      median=    9.7272 ms  IQR=   0.0426 ms     27.60 GFLOP/s
+blocked      512x  512x  512 tile=256  thr=1  batch=1      median=    8.9296 ms  IQR=   0.1182 ms     30.06 GFLOP/s
+blocked     1024x 1024x 1024 tile=16   thr=1  batch=1      median=  139.1646 ms  IQR=   0.4855 ms     15.43 GFLOP/s
+blocked     1024x 1024x 1024 tile=32   thr=1  batch=1      median=  126.2733 ms  IQR=   0.5060 ms     17.01 GFLOP/s
+blocked     1024x 1024x 1024 tile=64   thr=1  batch=1      median=  104.2858 ms  IQR=   0.3163 ms     20.59 GFLOP/s
+blocked     1024x 1024x 1024 tile=128  thr=1  batch=1      median=   79.3462 ms  IQR=   0.2357 ms     27.06 GFLOP/s
+blocked     1024x 1024x 1024 tile=256  thr=1  batch=1      median=   73.4547 ms  IQR=   0.2674 ms     29.24 GFLOP/s
+blocked     1024x  128x  512 tile=16   thr=1  batch=1      median=    8.1752 ms  IQR=   0.0306 ms     16.42 GFLOP/s
+blocked     1024x  128x  512 tile=32   thr=1  batch=1      median=    7.3415 ms  IQR=   0.0128 ms     18.28 GFLOP/s
+blocked     1024x  128x  512 tile=64   thr=1  batch=1      median=    6.1419 ms  IQR=   0.0813 ms     21.85 GFLOP/s
+blocked     1024x  128x  512 tile=128  thr=1  batch=2      median=    4.5243 ms  IQR=   0.0173 ms     29.67 GFLOP/s
+blocked     1024x  128x  512 tile=256  thr=1  batch=2      median=    4.2861 ms  IQR=   0.0740 ms     31.31 GFLOP/s
+blocked      128x 1024x   64 tile=16   thr=1  batch=5      median=    1.0018 ms  IQR=   0.0047 ms     16.75 GFLOP/s
+blocked      128x 1024x   64 tile=32   thr=1  batch=6      median=    0.9138 ms  IQR=   0.0021 ms     18.36 GFLOP/s
+blocked      128x 1024x   64 tile=64   thr=1  batch=9      median=    0.5625 ms  IQR=   0.0030 ms     29.82 GFLOP/s
+blocked      128x 1024x   64 tile=128  thr=1  batch=9      median=    0.5585 ms  IQR=   0.0015 ms     30.04 GFLOP/s
+blocked      128x 1024x   64 tile=256  thr=1  batch=9      median=    0.5586 ms  IQR=   0.0022 ms     30.04 GFLOP/s
+blocked      127x  255x   63 tile=16   thr=1  batch=15     median=    0.3283 ms  IQR=   0.0009 ms     12.43 GFLOP/s
+blocked      127x  255x   63 tile=32   thr=1  batch=20     median=    0.2610 ms  IQR=   0.0021 ms     15.63 GFLOP/s
+blocked      127x  255x   63 tile=64   thr=1  batch=25     median=    0.2027 ms  IQR=   0.0016 ms     20.13 GFLOP/s
+blocked      127x  255x   63 tile=128  thr=1  batch=25     median=    0.2037 ms  IQR=   0.0005 ms     20.03 GFLOP/s
+blocked      127x  255x   63 tile=256  thr=1  batch=25     median=    0.2043 ms  IQR=   0.0007 ms     19.98 GFLOP/s
+best tile by mean GFLOP/s over the large shapes: 256
+### 3. Thread scaling (parallel, tile 256)
+parallel      64x   64x   64 tile=256  thr=1  batch=282    median=    0.0180 ms  IQR=   0.0005 ms     29.20 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=2  batch=153    median=    0.0266 ms  IQR=   0.0025 ms     19.74 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=4  batch=91     median=    0.0294 ms  IQR=   0.0012 ms     17.82 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=8  batch=78     median=    0.0490 ms  IQR=   0.0008 ms     10.70 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=10 batch=107    median=    0.0551 ms  IQR=   0.0043 ms      9.52 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=1  batch=47     median=    0.1082 ms  IQR=   0.0004 ms     38.75 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=2  batch=69     median=    0.0720 ms  IQR=   0.0069 ms     58.24 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=4  batch=81     median=    0.0627 ms  IQR=   0.0206 ms     66.93 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=8  batch=47     median=    0.0709 ms  IQR=   0.0053 ms     59.16 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=10 batch=59     median=    0.0792 ms  IQR=   0.0027 ms     52.95 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=1  batch=5      median=    1.1314 ms  IQR=   0.0079 ms     29.66 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=2  batch=7      median=    0.7444 ms  IQR=   0.0059 ms     45.08 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=4  batch=12     median=    0.3603 ms  IQR=   0.0039 ms     93.12 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=8  batch=17     median=    0.3324 ms  IQR=   0.0121 ms    100.95 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=10 batch=18     median=    0.3326 ms  IQR=   0.0067 ms    100.90 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=1  batch=1      median=    9.9915 ms  IQR=   0.4568 ms     26.87 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=2  batch=1      median=    6.7235 ms  IQR=   0.3649 ms     39.92 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=4  batch=2      median=    2.7051 ms  IQR=   0.1792 ms     99.23 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=8  batch=3      median=    2.2000 ms  IQR=   0.0306 ms    122.02 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=10 batch=3      median=    2.1588 ms  IQR=   0.0839 ms    124.35 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=1  batch=1      median=   73.4770 ms  IQR=   0.5169 ms     29.23 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=2  batch=1      median=   51.3488 ms  IQR=   1.7256 ms     41.82 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=4  batch=1      median=   26.9213 ms  IQR=   1.2233 ms     79.77 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=8  batch=1      median=   18.0223 ms  IQR=   1.2837 ms    119.16 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=10 batch=1      median=   17.0930 ms  IQR=   0.6653 ms    125.64 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=1  batch=2      median=    4.5890 ms  IQR=   0.1662 ms     29.25 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=2  batch=2      median=    2.2602 ms  IQR=   0.7058 ms     59.38 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=4  batch=4      median=    1.3515 ms  IQR=   0.1288 ms     99.31 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=8  batch=5      median=    1.1094 ms  IQR=   0.0080 ms    120.98 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=10 batch=5      median=    1.0950 ms  IQR=   0.0238 ms    122.57 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=1  batch=8      median=    0.6488 ms  IQR=   0.0263 ms     25.86 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=2  batch=16     median=    0.3328 ms  IQR=   0.0007 ms     50.41 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=4  batch=24     median=    0.2057 ms  IQR=   0.0103 ms     81.58 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=8  batch=23     median=    0.2061 ms  IQR=   0.0047 ms     81.41 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=10 batch=28     median=    0.2105 ms  IQR=   0.0026 ms     79.70 GFLOP/s
+### 4. Accelerate: default threading vs VECLIB_MAXIMUM_THREADS=1
+accelerate   128x  128x  128 tile=32   thr=1  batch=1319   median=    0.0030 ms  IQR=   0.0000 ms   1380.81 GFLOP/s
+accelerate   128x  128x  128 tile=32   thr=1  batch=1396   median=    0.0029 ms  IQR=   0.0000 ms   1444.08 GFLOP/s
+accelerate   512x  512x  512 tile=32   thr=1  batch=31     median=    0.1582 ms  IQR=   0.0057 ms   1696.36 GFLOP/s
+accelerate   512x  512x  512 tile=32   thr=1  batch=34     median=    0.1700 ms  IQR=   0.0081 ms   1579.19 GFLOP/s
+accelerate  1024x 1024x 1024 tile=32   thr=1  batch=5      median=    1.1754 ms  IQR=   0.0597 ms   1827.10 GFLOP/s
+accelerate  1024x 1024x 1024 tile=32   thr=1  batch=4      median=    1.3626 ms  IQR=   0.0646 ms   1575.98 GFLOP/s
+accelerate  1024x  128x  512 tile=32   thr=1  batch=61     median=    0.0863 ms  IQR=   0.0039 ms   1556.04 GFLOP/s
+accelerate  1024x  128x  512 tile=32   thr=1  batch=65     median=    0.0860 ms  IQR=   0.0040 ms   1560.29 GFLOP/s
+### 5. Standard suite again with the best tile, 2 repeats
+== repeat 0, order: naive reordered blocked parallel accelerate
+naive         32x   32x   32 tile=256  thr=1  batch=428    median=    0.0093 ms  IQR=   0.0001 ms      7.04 GFLOP/s
+reordered     32x   32x   32 tile=256  thr=1  batch=1396   median=    0.0036 ms  IQR=   0.0000 ms     18.45 GFLOP/s
+blocked       32x   32x   32 tile=256  thr=1  batch=1364   median=    0.0036 ms  IQR=   0.0000 ms     18.33 GFLOP/s
+parallel      32x   32x   32 tile=256  thr=10 batch=59     median=    0.0547 ms  IQR=   0.0108 ms      1.20 GFLOP/s
+accelerate    32x   32x   32 tile=256  thr=1  batch=17124  median=    0.0002 ms  IQR=   0.0000 ms    340.24 GFLOP/s
+naive         64x   64x   64 tile=256  thr=1  batch=54     median=    0.0930 ms  IQR=   0.0004 ms      5.64 GFLOP/s
+reordered     64x   64x   64 tile=256  thr=1  batch=240    median=    0.0217 ms  IQR=   0.0001 ms     24.17 GFLOP/s
+blocked       64x   64x   64 tile=256  thr=1  batch=288    median=    0.0174 ms  IQR=   0.0001 ms     30.07 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=10 batch=61     median=    0.0571 ms  IQR=   0.0103 ms      9.19 GFLOP/s
+accelerate    64x   64x   64 tile=256  thr=1  batch=7497   median=    0.0005 ms  IQR=   0.0000 ms   1050.71 GFLOP/s
+naive        128x  128x  128 tile=256  thr=1  batch=5      median=    1.0809 ms  IQR=   0.0073 ms      3.88 GFLOP/s
+reordered    128x  128x  128 tile=256  thr=1  batch=47     median=    0.1077 ms  IQR=   0.0005 ms     38.95 GFLOP/s
+blocked      128x  128x  128 tile=256  thr=1  batch=47     median=    0.1077 ms  IQR=   0.0004 ms     38.93 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=10 batch=55     median=    0.0786 ms  IQR=   0.0039 ms     53.35 GFLOP/s
+accelerate   128x  128x  128 tile=256  thr=1  batch=1200   median=    0.0027 ms  IQR=   0.0000 ms   1557.13 GFLOP/s
+naive        256x  256x  256 tile=256  thr=1  batch=1      median=   10.3510 ms  IQR=   0.0357 ms      3.24 GFLOP/s
+reordered    256x  256x  256 tile=256  thr=1  batch=5      median=    1.0529 ms  IQR=   0.0046 ms     31.87 GFLOP/s
+blocked      256x  256x  256 tile=256  thr=1  batch=5      median=    1.0515 ms  IQR=   0.0037 ms     31.91 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=10 batch=17     median=    0.3301 ms  IQR=   0.0398 ms    101.65 GFLOP/s
+accelerate   256x  256x  256 tile=256  thr=1  batch=221    median=    0.0214 ms  IQR=   0.0002 ms   1568.32 GFLOP/s
+naive        512x  512x  512 tile=256  thr=1  batch=1      median=   96.2864 ms  IQR=   0.3561 ms      2.79 GFLOP/s
+reordered    512x  512x  512 tile=256  thr=1  batch=1      median=    8.2470 ms  IQR=   0.1069 ms     32.55 GFLOP/s
+blocked      512x  512x  512 tile=256  thr=1  batch=1      median=    8.8715 ms  IQR=   0.1402 ms     30.26 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=10 batch=3      median=    2.1421 ms  IQR=   0.0190 ms    125.31 GFLOP/s
+accelerate   512x  512x  512 tile=256  thr=1  batch=30     median=    0.1652 ms  IQR=   0.0023 ms   1624.90 GFLOP/s
+naive       1024x 1024x 1024 tile=256  thr=1  batch=1      median=  871.8143 ms  IQR=   9.1130 ms      2.46 GFLOP/s
+reordered   1024x 1024x 1024 tile=256  thr=1  batch=1      median=   65.8272 ms  IQR=   0.3131 ms     32.62 GFLOP/s
+blocked     1024x 1024x 1024 tile=256  thr=1  batch=1      median=   73.4595 ms  IQR=   0.4383 ms     29.23 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=10 batch=1      median=   16.9585 ms  IQR=   0.3835 ms    126.63 GFLOP/s
+accelerate  1024x 1024x 1024 tile=256  thr=1  batch=4      median=    1.2509 ms  IQR=   0.0068 ms   1716.77 GFLOP/s
+naive       1024x  128x  512 tile=256  thr=1  batch=1      median=   39.4651 ms  IQR=   0.3085 ms      3.40 GFLOP/s
+reordered   1024x  128x  512 tile=256  thr=1  batch=2      median=    4.1110 ms  IQR=   0.0145 ms     32.65 GFLOP/s
+blocked     1024x  128x  512 tile=256  thr=1  batch=2      median=    4.3066 ms  IQR=   0.0330 ms     31.17 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=10 batch=5      median=    1.0871 ms  IQR=   0.0326 ms    123.47 GFLOP/s
+accelerate  1024x  128x  512 tile=256  thr=1  batch=56     median=    0.0869 ms  IQR=   0.0039 ms   1544.53 GFLOP/s
+naive        128x 1024x   64 tile=256  thr=1  batch=1      median=    6.9671 ms  IQR=   0.2492 ms      2.41 GFLOP/s
+reordered    128x 1024x   64 tile=256  thr=1  batch=8      median=    0.6111 ms  IQR=   0.0108 ms     27.45 GFLOP/s
+blocked      128x 1024x   64 tile=256  thr=1  batch=9      median=    0.5597 ms  IQR=   0.0019 ms     29.98 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=10 batch=31     median=    0.2114 ms  IQR=   0.0189 ms     79.35 GFLOP/s
+accelerate   128x 1024x   64 tile=256  thr=1  batch=284    median=    0.0188 ms  IQR=   0.0008 ms    893.06 GFLOP/s
+naive        127x  255x   63 tile=256  thr=1  batch=5      median=    1.2074 ms  IQR=   0.0432 ms      3.38 GFLOP/s
+reordered    127x  255x   63 tile=256  thr=1  batch=24     median=    0.2058 ms  IQR=   0.0058 ms     19.83 GFLOP/s
+blocked      127x  255x   63 tile=256  thr=1  batch=25     median=    0.2025 ms  IQR=   0.0004 ms     20.15 GFLOP/s
+parallel     127x  255x   63 tile=256  thr=10 batch=51     median=    0.1019 ms  IQR=   0.0063 ms     40.04 GFLOP/s
+accelerate   127x  255x   63 tile=256  thr=1  batch=1349   median=    0.0037 ms  IQR=   0.0001 ms   1103.01 GFLOP/s
+== repeat 1, order: reordered blocked parallel accelerate naive
+reordered     32x   32x   32 tile=256  thr=1  batch=1263   median=    0.0039 ms  IQR=   0.0001 ms     17.00 GFLOP/s
+blocked       32x   32x   32 tile=256  thr=1  batch=1263   median=    0.0037 ms  IQR=   0.0002 ms     17.60 GFLOP/s
+parallel      32x   32x   32 tile=256  thr=10 batch=68     median=    0.0508 ms  IQR=   0.0091 ms      1.29 GFLOP/s
+accelerate    32x   32x   32 tile=256  thr=1  batch=20000  median=    0.0002 ms  IQR=   0.0000 ms    338.56 GFLOP/s
+naive         32x   32x   32 tile=256  thr=1  batch=532    median=    0.0093 ms  IQR=   0.0000 ms      7.03 GFLOP/s
+reordered     64x   64x   64 tile=256  thr=1  batch=216    median=    0.0217 ms  IQR=   0.0004 ms     24.11 GFLOP/s
+blocked       64x   64x   64 tile=256  thr=1  batch=290    median=    0.0175 ms  IQR=   0.0001 ms     29.95 GFLOP/s
+parallel      64x   64x   64 tile=256  thr=10 batch=62     median=    0.0535 ms  IQR=   0.0098 ms      9.79 GFLOP/s
+accelerate    64x   64x   64 tile=256  thr=1  batch=8000   median=    0.0005 ms  IQR=   0.0000 ms   1069.34 GFLOP/s
+naive         64x   64x   64 tile=256  thr=1  batch=53     median=    0.0932 ms  IQR=   0.0003 ms      5.63 GFLOP/s
+reordered    128x  128x  128 tile=256  thr=1  batch=46     median=    0.1076 ms  IQR=   0.0004 ms     38.99 GFLOP/s
+blocked      128x  128x  128 tile=256  thr=1  batch=46     median=    0.1080 ms  IQR=   0.0003 ms     38.82 GFLOP/s
+parallel     128x  128x  128 tile=256  thr=10 batch=63     median=    0.0779 ms  IQR=   0.0045 ms     53.83 GFLOP/s
+accelerate   128x  128x  128 tile=256  thr=1  batch=1539   median=    0.0027 ms  IQR=   0.0000 ms   1571.35 GFLOP/s
+naive        128x  128x  128 tile=256  thr=1  batch=5      median=    1.0783 ms  IQR=   0.0070 ms      3.89 GFLOP/s
+reordered    256x  256x  256 tile=256  thr=1  batch=5      median=    1.0522 ms  IQR=   0.0054 ms     31.89 GFLOP/s
+blocked      256x  256x  256 tile=256  thr=1  batch=5      median=    1.0491 ms  IQR=   0.0041 ms     31.98 GFLOP/s
+parallel     256x  256x  256 tile=256  thr=10 batch=18     median=    0.3225 ms  IQR=   0.0205 ms    104.04 GFLOP/s
+accelerate   256x  256x  256 tile=256  thr=1  batch=223    median=    0.0214 ms  IQR=   0.0003 ms   1568.81 GFLOP/s
+naive        256x  256x  256 tile=256  thr=1  batch=1      median=   11.5302 ms  IQR=   0.3687 ms      2.91 GFLOP/s
+reordered    512x  512x  512 tile=256  thr=1  batch=1      median=    8.2260 ms  IQR=   0.0765 ms     32.63 GFLOP/s
+blocked      512x  512x  512 tile=256  thr=1  batch=1      median=    8.7491 ms  IQR=   0.0167 ms     30.68 GFLOP/s
+parallel     512x  512x  512 tile=256  thr=10 batch=3      median=    2.3148 ms  IQR=   0.2675 ms    115.96 GFLOP/s
+accelerate   512x  512x  512 tile=256  thr=1  batch=30     median=    0.1635 ms  IQR=   0.0022 ms   1641.33 GFLOP/s
+naive        512x  512x  512 tile=256  thr=1  batch=1      median=   96.4517 ms  IQR=   0.3540 ms      2.78 GFLOP/s
+reordered   1024x 1024x 1024 tile=256  thr=1  batch=1      median=   65.8079 ms  IQR=   0.2574 ms     32.63 GFLOP/s
+blocked     1024x 1024x 1024 tile=256  thr=1  batch=1      median=   73.4783 ms  IQR=   0.1588 ms     29.23 GFLOP/s
+parallel    1024x 1024x 1024 tile=256  thr=10 batch=1      median=   17.1302 ms  IQR=   1.7915 ms    125.36 GFLOP/s
+accelerate  1024x 1024x 1024 tile=256  thr=1  batch=4      median=    1.2545 ms  IQR=   0.0111 ms   1711.78 GFLOP/s
+naive       1024x 1024x 1024 tile=256  thr=1  batch=1      median=  868.2173 ms  IQR=   2.6019 ms      2.47 GFLOP/s
+reordered   1024x  128x  512 tile=256  thr=1  batch=2      median=    4.1152 ms  IQR=   0.0102 ms     32.62 GFLOP/s
+blocked     1024x  128x  512 tile=256  thr=1  batch=2      median=    4.2269 ms  IQR=   0.0681 ms     31.75 GFLOP/s
+parallel    1024x  128x  512 tile=256  thr=10 batch=4      median=    1.1387 ms  IQR=   0.1304 ms    117.87 GFLOP/s
+accelerate  1024x  128x  512 tile=256  thr=1  batch=55     median=    0.0872 ms  IQR=   0.0031 ms   1538.86 GFLOP/s
+naive       1024x  128x  512 tile=256  thr=1  batch=1      median=   39.3858 ms  IQR=   0.4146 ms      3.41 GFLOP/s
+reordered    128x 1024x   64 tile=256  thr=1  batch=9      median=    0.6034 ms  IQR=   0.0059 ms     27.80 GFLOP/s
+blocked      128x 1024x   64 tile=256  thr=1  batch=9      median=    0.5585 ms  IQR=   0.0010 ms     30.04 GFLOP/s
+parallel     128x 1024x   64 tile=256  thr=10 batch=29     median=    0.2088 ms  IQR=   0.0289 ms     80.34 GFLOP/s
+accelerate   128x 1024x   64 tile=256  thr=1  batch=297    median=    0.0195 ms  IQR=   0.0013 ms    861.65 GFLOP/s
+naive        128x 1024x   64 tile=256  thr=1  batch=1      median=    6.9614 ms  IQR=   0.0523 ms      2.41 GFLOP/s
+reordered    127x  255x   63 tile=256  thr=1  batch=25     median=    0.2038 ms  IQR=   0.0037 ms     20.02 GFLOP/s
+blocked      127x  255x   63 tile=256  thr=1  batch=25     median=    0.2024 ms  IQR=   0.0010 ms     20.16 GFLOP/s
+parallel     127x  255x   63 tile=256  thr=10 batch=47     median=    0.1016 ms  IQR=   0.0015 ms     40.16 GFLOP/s
+accelerate   127x  255x   63 tile=256  thr=1  batch=1200   median=    0.0037 ms  IQR=   0.0001 ms   1089.04 GFLOP/s
+naive        127x  255x   63 tile=256  thr=1  batch=5      median=    1.2121 ms  IQR=   0.0431 ms      3.37 GFLOP/s
+done: 2026-10-09T13:03:55-07:00
+date: 2026-10-09T13:06:43-07:00
+chip: Apple M4
+macos: 26.6.2
+compiler: Apple clang 21.0.0 (clang-2100.1.1.101)
+flags: -O3 -DNDEBUG -g
+power_mode: automatic
+hardware_concurrency: 10
+VECLIB_MAXIMUM_THREADS: unset
+timestamp: 2026-10-09T13:06:43
+hardware: 4 performance cores, 6 efficiency cores
+L1d (P-core): 131072 bytes; L2 (P-cluster): 16777216 bytes; L2 (E-cluster): 4194304 bytes
+cache line: 128 bytes; memory: 17179869184 bytes
+power: Now drawing from 'AC Power'
+### 1. Standard suite, tile 32, 3 repeats with rotated order
+### 2. Tile sweep (blocked)
+best tile by mean GFLOP/s over the large shapes: 256
+### 3. Thread scaling (parallel, tile 256)
+### 4. Accelerate: default threading vs VECLIB_MAXIMUM_THREADS=1
+### 5. Standard suite again with the best tile, 2 repeats
+done: 2026-10-09T13:06:43-07:00
+### 6. Micro-kernel k-block sweep
+micro        256x  256x  256 tile=16   thr=1  batch=15     median=    0.3554 ms  IQR=   0.0045 ms     94.42 GFLOP/s
+micro        256x  256x  256 tile=32   thr=1  batch=15     median=    0.3362 ms  IQR=   0.0059 ms     99.80 GFLOP/s
+micro        256x  256x  256 tile=64   thr=1  batch=16     median=    0.3328 ms  IQR=   0.0062 ms    100.82 GFLOP/s
+micro        256x  256x  256 tile=128  thr=1  batch=15     median=    0.3368 ms  IQR=   0.0032 ms     99.63 GFLOP/s
+micro        256x  256x  256 tile=256  thr=1  batch=15     median=    0.3419 ms  IQR=   0.0156 ms     98.15 GFLOP/s
+micro        256x  256x  256 tile=512  thr=1  batch=15     median=    0.3368 ms  IQR=   0.0073 ms     99.62 GFLOP/s
+micro        256x  256x  256 tile=1024 thr=1  batch=15     median=    0.3357 ms  IQR=   0.0027 ms     99.97 GFLOP/s
+micro        512x  512x  512 tile=16   thr=1  batch=2      median=    2.8136 ms  IQR=   0.0475 ms     95.41 GFLOP/s
+micro        512x  512x  512 tile=32   thr=1  batch=2      median=    2.6911 ms  IQR=   0.0469 ms     99.75 GFLOP/s
+micro        512x  512x  512 tile=64   thr=1  batch=2      median=    2.6601 ms  IQR=   0.0422 ms    100.91 GFLOP/s
+micro        512x  512x  512 tile=128  thr=1  batch=2      median=    2.7355 ms  IQR=   0.0810 ms     98.13 GFLOP/s
+micro        512x  512x  512 tile=256  thr=1  batch=2      median=    2.6704 ms  IQR=   0.0776 ms    100.52 GFLOP/s
+micro        512x  512x  512 tile=512  thr=1  batch=2      median=    2.6715 ms  IQR=   0.0327 ms    100.48 GFLOP/s
+micro        512x  512x  512 tile=1024 thr=1  batch=2      median=    2.6582 ms  IQR=   0.0298 ms    100.98 GFLOP/s
+micro       1024x 1024x 1024 tile=16   thr=1  batch=1      median=   22.6037 ms  IQR=   0.1447 ms     95.01 GFLOP/s
+micro       1024x 1024x 1024 tile=32   thr=1  batch=1      median=   23.2045 ms  IQR=   0.3527 ms     92.55 GFLOP/s
+micro       1024x 1024x 1024 tile=64   thr=1  batch=1      median=   23.1829 ms  IQR=   0.1816 ms     92.63 GFLOP/s
+micro       1024x 1024x 1024 tile=128  thr=1  batch=1      median=   22.6599 ms  IQR=   0.4893 ms     94.77 GFLOP/s
+micro       1024x 1024x 1024 tile=256  thr=1  batch=1      median=   21.8141 ms  IQR=   0.2225 ms     98.44 GFLOP/s
+micro       1024x 1024x 1024 tile=512  thr=1  batch=1      median=   21.5972 ms  IQR=   0.3290 ms     99.43 GFLOP/s
+micro       1024x 1024x 1024 tile=1024 thr=1  batch=1      median=   21.6209 ms  IQR=   0.2980 ms     99.32 GFLOP/s
+micro       1024x  128x  512 tile=16   thr=1  batch=4      median=    1.3999 ms  IQR=   0.0266 ms     95.87 GFLOP/s
+micro       1024x  128x  512 tile=32   thr=1  batch=4      median=    1.3483 ms  IQR=   0.0345 ms     99.55 GFLOP/s
+micro       1024x  128x  512 tile=64   thr=1  batch=4      median=    1.3468 ms  IQR=   0.0222 ms     99.66 GFLOP/s
+micro       1024x  128x  512 tile=128  thr=1  batch=4      median=    1.3732 ms  IQR=   0.0174 ms     97.74 GFLOP/s
+micro       1024x  128x  512 tile=256  thr=1  batch=4      median=    1.4000 ms  IQR=   0.0096 ms     95.87 GFLOP/s
+micro       1024x  128x  512 tile=512  thr=1  batch=4      median=    1.4040 ms  IQR=   0.0110 ms     95.60 GFLOP/s
+micro       1024x  128x  512 tile=1024 thr=1  batch=4      median=    1.3715 ms  IQR=   0.0315 ms     97.86 GFLOP/s
+micro        128x 1024x   64 tile=16   thr=1  batch=29     median=    0.1733 ms  IQR=   0.0020 ms     96.83 GFLOP/s
+micro        128x 1024x   64 tile=32   thr=1  batch=28     median=    0.1691 ms  IQR=   0.0171 ms     99.23 GFLOP/s
+micro        128x 1024x   64 tile=64   thr=1  batch=31     median=    0.1665 ms  IQR=   0.0014 ms    100.77 GFLOP/s
+micro        128x 1024x   64 tile=128  thr=1  batch=30     median=    0.1696 ms  IQR=   0.0023 ms     98.90 GFLOP/s
+micro        128x 1024x   64 tile=256  thr=1  batch=29     median=    0.1669 ms  IQR=   0.0026 ms    100.52 GFLOP/s
+micro        128x 1024x   64 tile=512  thr=1  batch=31     median=    0.1670 ms  IQR=   0.0028 ms    100.44 GFLOP/s
+micro        128x 1024x   64 tile=1024 thr=1  batch=30     median=    0.1664 ms  IQR=   0.0009 ms    100.82 GFLOP/s
+micro        127x  255x   63 tile=16   thr=1  batch=31     median=    0.1632 ms  IQR=   0.0012 ms     25.00 GFLOP/s
+micro        127x  255x   63 tile=32   thr=1  batch=31     median=    0.1629 ms  IQR=   0.0006 ms     25.04 GFLOP/s
+micro        127x  255x   63 tile=64   thr=1  batch=31     median=    0.1633 ms  IQR=   0.0017 ms     24.99 GFLOP/s
+micro        127x  255x   63 tile=128  thr=1  batch=31     median=    0.1638 ms  IQR=   0.0017 ms     24.91 GFLOP/s
+micro        127x  255x   63 tile=256  thr=1  batch=31     median=    0.1662 ms  IQR=   0.0017 ms     24.55 GFLOP/s
+micro        127x  255x   63 tile=512  thr=1  batch=31     median=    0.1650 ms  IQR=   0.0016 ms     24.73 GFLOP/s
+micro        127x  255x   63 tile=1024 thr=1  batch=31     median=    0.1631 ms  IQR=   0.0027 ms     25.02 GFLOP/s
+best micro k-block: 1024
+### 7. Micro-kernel thread scaling
+micro_parallel    64x   64x   64 tile=1024 thr=1  batch=910    median=    0.0053 ms  IQR=   0.0001 ms     98.11 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=2  batch=184    median=    0.0208 ms  IQR=   0.0039 ms     25.26 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=4  batch=245    median=    0.0231 ms  IQR=   0.0037 ms     22.68 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=8  batch=89     median=    0.0423 ms  IQR=   0.0022 ms     12.39 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=10 batch=78     median=    0.0590 ms  IQR=   0.0040 ms      8.89 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=1  batch=120    median=    0.0424 ms  IQR=   0.0014 ms     98.87 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=2  batch=124    median=    0.0401 ms  IQR=   0.0012 ms    104.72 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=4  batch=122    median=    0.0386 ms  IQR=   0.0039 ms    108.56 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=8  batch=84     median=    0.0598 ms  IQR=   0.0022 ms     70.17 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=10 batch=54     median=    0.0714 ms  IQR=   0.0049 ms     58.76 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=1  batch=13     median=    0.3908 ms  IQR=   0.0155 ms     85.87 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=2  batch=25     median=    0.2046 ms  IQR=   0.0019 ms    164.01 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=4  batch=35     median=    0.1316 ms  IQR=   0.0033 ms    255.06 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=8  batch=37     median=    0.1408 ms  IQR=   0.0020 ms    238.37 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=10 batch=31     median=    0.1987 ms  IQR=   0.0062 ms    168.84 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=1  batch=2      median=    2.9553 ms  IQR=   0.0148 ms     90.83 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=2  batch=4      median=    1.3921 ms  IQR=   0.0683 ms    192.82 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=4  batch=5      median=    0.8892 ms  IQR=   0.0853 ms    301.90 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=8  batch=7      median=    0.7295 ms  IQR=   0.0166 ms    367.96 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=10 batch=5      median=    1.0513 ms  IQR=   0.0284 ms    255.35 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=1  batch=1      median=   21.9914 ms  IQR=   1.3842 ms     97.65 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=2  batch=1      median=   11.3658 ms  IQR=   0.3679 ms    188.94 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=4  batch=1      median=    7.1409 ms  IQR=   0.4116 ms    300.73 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=8  batch=1      median=    6.5741 ms  IQR=   0.4781 ms    326.66 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=10 batch=1      median=    8.5031 ms  IQR=   0.2689 ms    252.55 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=1  batch=4      median=    1.5830 ms  IQR=   0.0607 ms     84.79 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=2  batch=7      median=    0.7882 ms  IQR=   0.0268 ms    170.28 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=4  batch=10     median=    0.4608 ms  IQR=   0.0188 ms    291.29 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=8  batch=10     median=    0.4235 ms  IQR=   0.0067 ms    316.93 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=10 batch=11     median=    0.4798 ms  IQR=   0.0343 ms    279.76 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=1  batch=28     median=    0.1836 ms  IQR=   0.0005 ms     91.39 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=2  batch=44     median=    0.1138 ms  IQR=   0.0140 ms    147.38 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=4  batch=61     median=    0.0762 ms  IQR=   0.0016 ms    220.05 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=8  batch=52     median=    0.0874 ms  IQR=   0.0043 ms    191.96 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=10 batch=41     median=    0.1256 ms  IQR=   0.0046 ms    133.53 GFLOP/s
+### 8. 2048^3: working set (48 MB) exceeds the 16 MB L2
+reordered   2048x 2048x 2048 tile=32   thr=1  batch=1      median=  529.1382 ms  IQR=   4.7730 ms     32.47 GFLOP/s
+blocked     2048x 2048x 2048 tile=64   thr=1  batch=1      median=  883.4140 ms  IQR=   6.8683 ms     19.45 GFLOP/s
+blocked     2048x 2048x 2048 tile=128  thr=1  batch=1      median=  781.9568 ms  IQR=   8.4534 ms     21.97 GFLOP/s
+blocked     2048x 2048x 2048 tile=256  thr=1  batch=1      median=  631.9914 ms  IQR=   8.3943 ms     27.18 GFLOP/s
+micro       2048x 2048x 2048 tile=64   thr=1  batch=1      median=  196.3041 ms  IQR=   1.4660 ms     87.52 GFLOP/s
+micro       2048x 2048x 2048 tile=256  thr=1  batch=1      median=  183.5413 ms  IQR=   1.0555 ms     93.60 GFLOP/s
+micro       2048x 2048x 2048 tile=1024 thr=1  batch=1      median=  192.3285 ms  IQR=   3.6494 ms     89.33 GFLOP/s
+parallel    2048x 2048x 2048 tile=256  thr=10 batch=1      median=  143.9379 ms  IQR=  15.0665 ms    119.36 GFLOP/s
+micro_parallel  2048x 2048x 2048 tile=1024 thr=10 batch=1      median=   78.1764 ms  IQR=   2.3775 ms    219.76 GFLOP/s
+accelerate  2048x 2048x 2048 tile=32   thr=1  batch=1      median=   11.5672 ms  IQR=   0.3112 ms   1485.23 GFLOP/s
+### 9. Standard suite for the micro-kernel variants, 2 repeats
+== repeat 0, order: micro micro_parallel
+micro         32x   32x   32 tile=1024 thr=1  batch=7063   median=    0.0008 ms  IQR=   0.0001 ms     84.30 GFLOP/s
+micro_parallel    32x   32x   32 tile=1024 thr=10 batch=75     median=    0.0551 ms  IQR=   0.0122 ms      1.19 GFLOP/s
+micro         64x   64x   64 tile=1024 thr=1  batch=945    median=    0.0055 ms  IQR=   0.0007 ms     95.24 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=10 batch=80     median=    0.0572 ms  IQR=   0.0037 ms      9.17 GFLOP/s
+micro        128x  128x  128 tile=1024 thr=1  batch=118    median=    0.0473 ms  IQR=   0.0061 ms     88.62 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=10 batch=73     median=    0.0651 ms  IQR=   0.0055 ms     64.45 GFLOP/s
+micro        256x  256x  256 tile=1024 thr=1  batch=15     median=    0.3915 ms  IQR=   0.0037 ms     85.72 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=10 batch=32     median=    0.1766 ms  IQR=   0.0297 ms    189.98 GFLOP/s
+micro        512x  512x  512 tile=1024 thr=1  batch=2      median=    3.2683 ms  IQR=   0.2079 ms     82.13 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=10 batch=5      median=    1.0656 ms  IQR=   0.0253 ms    251.92 GFLOP/s
+micro       1024x 1024x 1024 tile=1024 thr=1  batch=1      median=   23.9330 ms  IQR=   0.6706 ms     89.73 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=10 batch=1      median=    8.3232 ms  IQR=   0.3397 ms    258.01 GFLOP/s
+micro       1024x  128x  512 tile=1024 thr=1  batch=4      median=    1.5971 ms  IQR=   0.0735 ms     84.04 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=10 batch=11     median=    0.4667 ms  IQR=   0.0273 ms    287.60 GFLOP/s
+micro        128x 1024x   64 tile=1024 thr=1  batch=27     median=    0.2038 ms  IQR=   0.0248 ms     82.32 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=10 batch=39     median=    0.1218 ms  IQR=   0.0058 ms    137.73 GFLOP/s
+micro        127x  255x   63 tile=1024 thr=1  batch=28     median=    0.1752 ms  IQR=   0.0004 ms     23.30 GFLOP/s
+micro_parallel   127x  255x   63 tile=1024 thr=10 batch=53     median=    0.0902 ms  IQR=   0.0030 ms     45.24 GFLOP/s
+== repeat 1, order: micro_parallel micro
+micro_parallel    32x   32x   32 tile=1024 thr=10 batch=114    median=    0.0468 ms  IQR=   0.0015 ms      1.40 GFLOP/s
+micro         32x   32x   32 tile=1024 thr=1  batch=4804   median=    0.0008 ms  IQR=   0.0000 ms     81.36 GFLOP/s
+micro_parallel    64x   64x   64 tile=1024 thr=10 batch=69     median=    0.0577 ms  IQR=   0.0036 ms      9.08 GFLOP/s
+micro         64x   64x   64 tile=1024 thr=1  batch=846    median=    0.0059 ms  IQR=   0.0000 ms     88.78 GFLOP/s
+micro_parallel   128x  128x  128 tile=1024 thr=10 batch=73     median=    0.0653 ms  IQR=   0.0017 ms     64.19 GFLOP/s
+micro        128x  128x  128 tile=1024 thr=1  batch=115    median=    0.0468 ms  IQR=   0.0037 ms     89.60 GFLOP/s
+micro_parallel   256x  256x  256 tile=1024 thr=10 batch=30     median=    0.1982 ms  IQR=   0.0399 ms    169.33 GFLOP/s
+micro        256x  256x  256 tile=1024 thr=1  batch=14     median=    0.4113 ms  IQR=   0.0249 ms     81.59 GFLOP/s
+micro_parallel   512x  512x  512 tile=1024 thr=10 batch=5      median=    1.0476 ms  IQR=   0.0178 ms    256.24 GFLOP/s
+micro        512x  512x  512 tile=1024 thr=1  batch=2      median=    3.0794 ms  IQR=   0.1424 ms     87.17 GFLOP/s
+micro_parallel  1024x 1024x 1024 tile=1024 thr=10 batch=1      median=    8.4537 ms  IQR=   0.5377 ms    254.03 GFLOP/s
+micro       1024x 1024x 1024 tile=1024 thr=1  batch=1      median=   24.6767 ms  IQR=   1.1408 ms     87.02 GFLOP/s
+micro_parallel  1024x  128x  512 tile=1024 thr=10 batch=11     median=    0.4716 ms  IQR=   0.0316 ms    284.57 GFLOP/s
+micro       1024x  128x  512 tile=1024 thr=1  batch=3      median=    1.5847 ms  IQR=   0.0894 ms     84.69 GFLOP/s
+micro_parallel   128x 1024x   64 tile=1024 thr=10 batch=37     median=    0.1260 ms  IQR=   0.0106 ms    133.19 GFLOP/s
+micro        128x 1024x   64 tile=1024 thr=1  batch=28     median=    0.1837 ms  IQR=   0.0043 ms     91.33 GFLOP/s
+micro_parallel   127x  255x   63 tile=1024 thr=10 batch=58     median=    0.0942 ms  IQR=   0.0045 ms     43.30 GFLOP/s
+micro        127x  255x   63 tile=1024 thr=1  batch=29     median=    0.1696 ms  IQR=   0.0077 ms     24.05 GFLOP/s
+done (extra): 2026-10-09T13:08:03-07:00
