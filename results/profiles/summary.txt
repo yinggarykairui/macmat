@@ -1,0 +1,26 @@
+Profile summary (macOS `sample`, 1 ms interval, ~4 s window, workload 1024x1024x1024, Release -O3 -g)
+Instruments Time Profiler was not available: this machine has Command Line Tools only, no Xcode.
+scripts/profile.sh records .trace files with xctrace automatically when Xcode is installed.
+
+== naive (top-of-stack samples, all threads; total 3420) ==
+  100.0%    3420  macmat::multiply_naive  [macmat]
+
+== parallel (top-of-stack samples, all threads; total 26155) ==
+   94.2%   24630  macmat::multiply_blocked_rows  [macmat]
+    5.4%    1415  __ulock_wait  [libsystem_kernel.dylib]
+    0.4%      95  thread_start  [libsystem_pthread.dylib]
+    0.0%       8  __bzero  [libsystem_platform.dylib]
+    0.0%       7  __bsdthread_create  [libsystem_kernel.dylib]
+
+== micro_parallel (top-of-stack samples, all threads; total 24599) ==
+   88.3%   21730  macmat::multiply_micro_rows  [macmat]
+    6.5%    1602  __ulock_wait  [libsystem_kernel.dylib]
+    5.0%    1224  thread_start  [libsystem_pthread.dylib]
+    0.1%      15  __bzero  [libsystem_platform.dylib]
+    0.0%      10  _kernelrpc_mach_vm_deallocate_trap  [libsystem_kernel.dylib]
+    0.0%       7  _pthread_tsd_cleanup  [libsystem_pthread.dylib]
+    0.0%       6  __bsdthread_create  [libsystem_kernel.dylib]
+    0.0%       5  _platform_memset  [libsystem_platform.dylib]
+
+Reading: `multiply_*` rows are compute. `__ulock_wait` is the calling thread blocked in join();
+`thread_start`/`__bsdthread_create`/`_pthread_tsd_cleanup` are per-call thread lifecycle cost.

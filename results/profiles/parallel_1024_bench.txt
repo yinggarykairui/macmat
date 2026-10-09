@@ -1,0 +1,1 @@
+parallel    1024x 1024x 1024 tile=256  thr=10 batch=1      median=   19.4754 ms  IQR=   1.2062 ms    110.27 GFLOP/s
